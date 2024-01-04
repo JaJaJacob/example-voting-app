@@ -42,7 +42,7 @@ services:
     volumes:
       - "./healthchecks:/healthchecks"
     healthcheck:
-      test: /healthchecks/redis.sh
+      test: ["CMD-SHELL", "healthchecks/redis.sh || exit 1"]
       interval: "5s"
     networks:
       - back-tier
