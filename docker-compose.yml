@@ -55,6 +55,9 @@ services:
     image: redis:alpine
     volumes:
       - "./healthchecks:/healthchecks"
+    healthcheck:
+      test: /healthchecks/redis.sh
+      interval: "5s"
     networks:
       - back-tier
 
@@ -66,6 +69,9 @@ services:
     volumes:
       - "db-data:/var/lib/postgresql/data"
       - "./healthchecks:/healthchecks"
+    healthcheck:
+      test: /healthchecks/postgres.sh
+      interval: "5s"
     networks:
       - back-tier
 
